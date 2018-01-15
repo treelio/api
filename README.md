@@ -1,4 +1,9 @@
-# Api
+[![CircleCI](https://circleci.com/gh/treelio/api.svg?style=svg)](https://circleci.com/gh/treelio/api)
+
+# Treelio API
+
+
+## Setup
 
 To start your Phoenix server:
 
