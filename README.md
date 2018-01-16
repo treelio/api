@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/treelio/api.svg?style=svg)](https://circleci.com/gh/treelio/api)
+[![Coverage Status](https://coveralls.io/repos/github/treelio/api/badge.svg?branch=master)](https://coveralls.io/github/treelio/api?branch=master)
 
 # Treelio API
 
