@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/api
+    docker:
+      - image: circleci/elixir:1.5.2
+      - image: postgres:9.6.6
+        environment:
+          POSTGRES_USER: ubuntu
+    environment:
+      DB_USERNAME: "ubuntu"
+      DB_PASSWORD: ""
+    steps:
+      - checkout
+      - run:
+          name: Get dependencies
+          command: |
+            mix local.hex --force
+            mix local.rebar
+            mix deps.get
+      - run:
+          name: Run Tests and Coverage
+          command: |
+            if [ -z ${COVERALLS_REPO_TOKEN} ]; then
+              echo "coveralls token isn't set, just run tests"
+              MIX_ENV=test mix test
+            else
+              MIX_ENV=test mix coveralls.circle
+            fi
