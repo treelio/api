@@ -12,8 +12,9 @@ config :logger, level: :warn
 # Configure your database
 config :api, Api.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "api_test",
+  username: System.get_env("TREELIO_DB_USERNAME"),
+  password: System.get_env("TREELIO_DB_PASSWORD"),
+  database: "treelio_api_dev",
+  database: "treelio_api_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

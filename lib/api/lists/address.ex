@@ -3,9 +3,9 @@ defmodule Api.Lists.Address do
   import Ecto.Changeset
   alias Api.Lists.Address
 
+  @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "addresses" do
-
     timestamps()
   end
 

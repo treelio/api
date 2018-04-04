@@ -3,9 +3,9 @@ defmodule Api.Lists.ListItem do
   import Ecto.Changeset
   alias Api.Lists.ListItem
 
+  @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "list_items" do
-
     timestamps()
   end
 

@@ -7,6 +7,8 @@ defmodule Api.Repo.Migrations.CreateItems do
       add(:name, :string)
       add(:description, :string)
       add(:price, :decimal)
+      add(:image_link, :string)
+      add(:amazon_id, :string)
 
       timestamps()
     end

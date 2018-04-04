@@ -3,15 +3,14 @@ defmodule Api.Lists.List do
   import Ecto.Changeset
   alias Api.Lists.List
 
-  @primary_key {:id, :binary_id, autogenerate: false}
+  @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
   schema "lists" do
     field(:name, :string)
     field(:description, :string)
 
-    has_many(:list_items, Akka.List.ListItem, on_delete: :delete_all)
-    has_many(:items, Api.List.Item, join_trhough: "list_items")
+    many_to_many(:items, Api.Lists.Item, join_through: "list_items")
 
     timestamps(type: :utc_datetime)
   end

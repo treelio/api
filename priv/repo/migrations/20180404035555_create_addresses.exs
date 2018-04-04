@@ -2,7 +2,7 @@ defmodule Api.Repo.Migrations.CreateAddresses do
   use Ecto.Migration
 
   def change do
-    create table(:addresses) do
+    create table(:addresses, primary_key: false) do
       add(:id, :uuid, primary_key: true)
       add(:type, :string)
       add(:street_name, :string)

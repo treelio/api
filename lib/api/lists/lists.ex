@@ -7,6 +7,8 @@ defmodule Api.Lists do
   alias Api.Repo
 
   alias Api.Lists.List
+  alias Api.Lists.ListItem
+  alias Api.Lists.Person
 
   @doc """
   Returns the list of lists.
