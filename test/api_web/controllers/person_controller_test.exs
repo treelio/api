@@ -4,9 +4,9 @@ defmodule ApiWeb.PersonControllerTest do
   alias Api.Lists
   alias Api.Lists.Person
 
-  @create_attrs %{}
-  @update_attrs %{}
-  @invalid_attrs %{}
+  @create_attrs %{first_name: "Charlie"}
+  @update_attrs %{first_name: "Paul"}
+  @invalid_attrs %{first_name: "c"}
 
   def fixture(:person) do
     {:ok, person} = Lists.create_person(@create_attrs)
@@ -19,23 +19,22 @@ defmodule ApiWeb.PersonControllerTest do
 
   describe "index" do
     test "lists all persons", %{conn: conn} do
-      conn = get conn, person_path(conn, :index)
+      conn = get(conn, person_path(conn, :index))
       assert json_response(conn, 200)["data"] == []
     end
   end
 
   describe "create person" do
     test "renders person when data is valid", %{conn: conn} do
-      conn = post conn, person_path(conn, :create), person: @create_attrs
+      conn = post(conn, person_path(conn, :create), person: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get conn, person_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id}
+      conn = get(conn, person_path(conn, :show, id))
+      assert json_response(conn, 200)["data"] == %{"id" => id}
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, person_path(conn, :create), person: @invalid_attrs
+      conn = post(conn, person_path(conn, :create), person: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -44,16 +43,15 @@ defmodule ApiWeb.PersonControllerTest do
     setup [:create_person]
 
     test "renders person when data is valid", %{conn: conn, person: %Person{id: id} = person} do
-      conn = put conn, person_path(conn, :update, person), person: @update_attrs
+      conn = put(conn, person_path(conn, :update, person), person: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get conn, person_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id}
+      conn = get(conn, person_path(conn, :show, id))
+      assert json_response(conn, 200)["data"] == %{"id" => id}
     end
 
     test "renders errors when data is invalid", %{conn: conn, person: person} do
-      conn = put conn, person_path(conn, :update, person), person: @invalid_attrs
+      conn = put(conn, person_path(conn, :update, person), person: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -62,11 +60,12 @@ defmodule ApiWeb.PersonControllerTest do
     setup [:create_person]
 
     test "deletes chosen person", %{conn: conn, person: person} do
-      conn = delete conn, person_path(conn, :delete, person)
+      conn = delete(conn, person_path(conn, :delete, person))
       assert response(conn, 204)
-      assert_error_sent 404, fn ->
-        get conn, person_path(conn, :show, person)
-      end
+
+      assert_error_sent(404, fn ->
+        get(conn, person_path(conn, :show, person))
+      end)
     end
   end
 

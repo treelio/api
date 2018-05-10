@@ -24,7 +24,6 @@ defmodule ApiWeb.Router do
   scope "/api", ApiWeb do
     pipe_through(:api)
     resources("/items", ItemController, except: [:new, :edit])
-    resources("/list_items", ListItemController, except: [:new, :edit])
     resources("/lists", ListController, except: [:new, :edit])
     resources("/persons", PersonController, except: [:new, :edit])
   end
