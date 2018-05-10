@@ -6,9 +6,9 @@ defmodule Api.ListsTest do
   describe "lists" do
     alias Api.Lists.List
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{name: "my list"}
+    @update_attrs %{name: "my new list"}
+    @invalid_attrs %{name: "l"}
 
     def list_fixture(attrs \\ %{}) do
       {:ok, list} =
@@ -64,9 +64,9 @@ defmodule Api.ListsTest do
   describe "items" do
     alias Api.Lists.Item
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{name: "Diapers", price: 15.50}
+    @update_attrs %{price: 16}
+    @invalid_attrs %{name: "d", price: 0}
 
     def item_fixture(attrs \\ %{}) do
       {:ok, item} =
@@ -122,9 +122,9 @@ defmodule Api.ListsTest do
   describe "list_items" do
     alias Api.Lists.ListItem
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{quantity: 1}
+    @update_attrs %{quantity: 2}
+    @invalid_attrs %{quantity: 0}
 
     def list_item_fixture(attrs \\ %{}) do
       {:ok, list_item} =
@@ -180,9 +180,9 @@ defmodule Api.ListsTest do
   describe "persons" do
     alias Api.Lists.Person
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{first_name: "Charlie", last_name: "Chocolate"}
+    @update_attrs %{first_name: "Paul"}
+    @invalid_attrs %{first_name: "p"}
 
     def person_fixture(attrs \\ %{}) do
       {:ok, person} =

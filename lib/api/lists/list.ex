@@ -18,7 +18,8 @@ defmodule Api.Lists.List do
   @doc false
   def changeset(%List{} = list, attrs) do
     list
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:name, :description])
+    |> validate_required([:name])
+    |> validate_length(:name, min: 3)
   end
 end
